@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="sr" lang="sr">
+<head>
+<title>Weather</title>
+<meta http-equiv="Content-Type" content="text/xml; charset=utf-8"/>
+    
+<link rel="stylesheet" type="text/css" href="styles/style.css"/>
+
+<!-- google fonts font-family: 'Sansita', sans-serif; font-family: 'Lobster', cursive;--> 
+<link href="https://fonts.googleapis.com/css?family=Lobster|Sansita:400,800i" rel="stylesheet"> 
+    
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    
+<!-- date picker -->
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="https://resources/demos/style.css">
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>    
+    
+<script src= "https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="js/ang.js"></script>
+</head>
+    
+<body>
+<div id="wrapper" ng-app="probaApp" ng-controller="probaCtrl">
+    
+<header>Vremenska Prognoza</header>
+    
+<div id="menu">
+    <table id="opcije">
+        <tr style="background-color:lightgray;"><th>Izaberi jedinicu mere</th><th>Izaberi grad</th><th>Izaberi datum</th></tr>
+        <tr>
+            <td>
+                <select ng-model="izborMere" ng-init="izborMere='Celsius'" ng-change="pretragaPoParamterima()" ng-options="option for option in mere">
+                </select>
+            </td>
+            <td>
+                <select ng-model="nadjiGrad" ng-options="option for option in gradovi">
+                    <option value="">Svi gradovi</option>
+                </select>
+            </td>
+            <td><input type="text" ng-model="datepicker" id="datepicker" ng-change="pretragaPoParamterima()"></td>
+        </tr>
+    </table>
+</div>  
+    
+<div id="content">
+    
+    <table id="prognoza">
+        
+        <tr style="background-color:lightgray;"><th>Temperatura</th><th>Grad</th><th>Vreme</th></tr>
+        
+        <tr ng-repeat="n in niz | filter:nadjiGrad | orderBy:'list[0].temp.day' ">
+            <td>{{n.list[0].temp.day}}</td><td>{{n.city.name}}</td>
+            <td> <img src="images/{{n.list[0].weather[0].main}}.jpg" > </td>
+        </tr>
+        
+    </table>
+    
+</div>   
+    
+<footer>developed by Milan Gajic</footer>
+    
+</div><!-- wrapper -->
+
+
+</body>
+</html>
+  
