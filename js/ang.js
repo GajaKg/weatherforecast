@@ -23,7 +23,7 @@ function getServiceData(method, url, bool){ // id, price, name
 }
 
 function serverWeather(grad, dani=""){
-    var api = "api.openweathermap.org/data/2.5/forecast/daily?";
+    var api = "http://api.openweathermap.org/data/2.5/forecast/daily?";
     var grad = "q=" + grad;
     var jedinicaMere = "&units=metric";
     var tipPodataka = "&mode=json";
